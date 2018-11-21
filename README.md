@@ -1,5 +1,5 @@
 # coeus
-*coeus* is a python implementation of the protocol as defined for the *coeus* unity UI test framework.
+*coeus* is a python client implementation of the json-message protocol for remote (Tcp) integration tests.
 
 [pypi-build-status]: https://img.shields.io/pypi/v/coeus-test.svg
 [travis-ci-status]: https://img.shields.io/travis/AgeOfLearning/coeus-python-framework.svg
@@ -8,9 +8,9 @@
 [![travis][travis-ci-status]](https://travis-ci.org/AgeOfLearning/coeus-python-framework)
 
 ## Installation
-*coeus* is meant to be added as a requirement to your python unit-test project. Simply add a reference to `coeus`.
+*coeus* is meant to be added as a requirement to your python unit-test project. Simply add a reference to `coeus-test`.
 
-`pip install coeus`
+`pip install coeus-test`
 
 ## Getting Started
 
