@@ -1,8 +1,11 @@
 # coeus
 *coeus* is a python implementation of the protocol as defined for the *coeus* unity UI test framework.
 
-![pypi-build-status](https://img.shields.io/pypi/v/coeus.svg)
-![travis-ci-status](https://img.shields.io/travis/AgeOfLearning/coeus-python-framework.svg)
+[pypi-build-status]: https://img.shields.io/pypi/v/coeus-test.svg
+[travis-ci-status]: https://img.shields.io/travis/AgeOfLearning/coeus-python-framework.svg
+
+[![pypi][pypi-build-status]](https://pypi.python.org/pypi/coeus-test)
+[![travis][travis-ci-status]](https://travis-ci.org/AgeOfLearning/coeus-python-framework)
 
 ## Installation
 *coeus* is meant to be added as a requirement to your python unit-test project. Simply add a reference to `coeus`.
