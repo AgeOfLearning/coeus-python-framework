@@ -32,6 +32,7 @@ setup(
     install_requires=requirements,
     license="BSD 3-Clause License",
     long_description=readme,
+    long_description_content_type="text/markdown",
     include_package_data=True,
     keywords='coeus-test',
     name='coeus-test',
