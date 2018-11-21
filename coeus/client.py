@@ -5,6 +5,7 @@ import time
 import socket
 import struct
 import json
+import message
 
 
 class Client:
@@ -72,16 +73,19 @@ class Client:
 
         return msg
 
-    def send_message(self, message):
+    def send_message(self, msg):
         """
         Serializes the message and sends to server.
-        :param message:
+        :param msg:
         :return: None
         """
-        if message is None:
+        if msg is None:
             raise ValueError('message cannot be None!')
 
-        message_json = json.dumps(message.__dict__)
+        if type(msg) is not message.Message:
+            raise ValueError('message must be a type of Message')
+
+        message_json = json.dumps(msg.__dict__)
         message_length = len(message_json)
         message_length_binary = struct.pack('>I', message_length)
 

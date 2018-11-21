@@ -12,8 +12,15 @@ class MessageTestCase(unittest.TestCase):
     def message_init_no_payload():
         coeus.message.Message('message_type', None)
 
+    @staticmethod
+    def message_init_non_dict_payload():
+        coeus.message.Message('message_type', [])
+
     def test_message_init_raises_exception_when_missing_message_type(self):
         self.assertRaises(ValueError, MessageTestCase.message_init_no_message_type)
 
     def test_message_init_raises_exception_when_missing_payload(self):
         self.assertRaises(ValueError, MessageTestCase.message_init_no_payload)
+
+    def test_message_init_raises_exception_when_non_dict_payload(self):
+        self.assertRaises(ValueError, MessageTestCase.message_init_non_dict_payload)
