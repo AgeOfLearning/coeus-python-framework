@@ -40,6 +40,6 @@ setup(
     setup_requires=setup_requirements,
     tests_require=test_requirements,
     url='https://github.com/AgeOfLearning/coeus-python-framework',
-    version='0.1.0',
+    version='0.1.1',
     zip_safe=False,
 )
