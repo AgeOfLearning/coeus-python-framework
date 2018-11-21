@@ -18,6 +18,12 @@ class Client:
     DEFAULT_CONNECTION_RETRY_TIMEOUT = 5
 
     def __init__(self, tcp_ip=DEFAULT_TCP_IP, tcp_port=DEFAULT_TCP_PORT):
+        if tcp_ip is None:
+            raise ValueError("tcp_ip cannot be None!")
+
+        if tcp_port is None:
+            raise ValueError("tcp_port cannot be None!")
+
         self.tcp_ip = tcp_ip
         self.tcp_port = tcp_port
 
@@ -72,6 +78,9 @@ class Client:
         :param message:
         :return: None
         """
+        if message is None:
+            raise ValueError('message cannot be None!')
+
         message_json = json.dumps(message.__dict__)
         message_length = len(message_json)
         message_length_binary = struct.pack('>I', message_length)
