@@ -1,0 +1,9 @@
+Coeus.PythonFramework/.idea
+Coeus.PythonFramework/coeus.egg-info
+Coeus.PythonFramework/coeus.python_framework.egg-info
+Coeus.PythonFramework/dist
+*.pyc
+.idea
+coeus.egg-info
+coeus.python_framework.egg-info
+dist

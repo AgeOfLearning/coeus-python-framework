@@ -1,0 +1,14 @@
+language: python
+python:
+- 2.7
+install: pip install -U tox-travis
+script: setup.py test
+deploy:
+  provider: pypi
+  distributions: sdist bdist_wheel
+  user: dklompmaker
+  on:
+    tags: true
+    repo: AgeOfLearning/coeus-python-framework
+  password:
+    secure: OBSOz3Suup+ikQg3S/Dg5F+AzdLQe/DWWr9yYvz3ZPwFxgpPs7O1klELOA6eK23pc8YdW7w38bxysuhLrF/jN9p5yIJXz4toMSqy/EvdWwh1zr9mjYjIFLZXQEQgwzrzBztjfVYnjAk4M90FEEXGCaGD33Srr0kyo0y9Cs+E6hcYJWQfpD/7YPqsE1ha0NqIFFtQYuahThrYoiqT0EfXIvtCaZzZv62X8V86cpvDKTEqHwTHC+zEOxF7Jj2vtezb+qRwfoY49RE1iAr/2nrCnF6XWL1sCOYjTsjCkjckXvP23EmKUzOJtlfArrbYvbEsyon07gmku+EDy7iN94REUVXmX5DIqq7AZEE9Gy1JOYkIzhn1il5GNhGwR6OuS1vcOCAwyhPEVzWQvczaTsp++tqqHEUXSam2+5TvWCD3/KQ8fjgHvpT3dCYoilZCF/bmQ/q+4nrItlh/pjDFaTUdkJ6V6rcXUKHIZXB2286H0LNuDwUgc0Wdc2k9Ibn/sy9F90VtKDr3+1EuhxdKs06RWM8YycQUqEgwT2/r0tztIJtBzoZPM46H/RzFziPnkE02FGBVh070QI025HfuT43MOB2DtDFvDeCOrqcGpol4P0EhxrOmdtz6RPu8fYohJjtaOPqC8A0qYVo1nMxRhC0P2LxRtkZEtbxyHspkr2fhopE=
