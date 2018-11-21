@@ -1,7 +1,6 @@
 language: python
 python:
 - 2.7
-script: setup.py test
 deploy:
   provider: pypi
   distributions: sdist bdist_wheel
