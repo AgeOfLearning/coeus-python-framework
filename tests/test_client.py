@@ -1,24 +1,24 @@
 import unittest
-import coeus.client
+import coeus_test.client
 
 
 class ClientTestCase(unittest.TestCase):
     @staticmethod
     def client_init_none_tcp_ip():
-        coeus.client.Client(tcp_ip=None)
+        coeus_test.client.Client(tcp_ip=None)
 
     @staticmethod
     def client_init_none_tcp_port():
-        coeus.client.Client(tcp_port=None)
+        coeus_test.client.Client(tcp_port=None)
 
     @staticmethod
     def client_send_message_none_message():
-        cli = coeus.client.Client()
+        cli = coeus_test.client.Client()
         cli.send_message(None)
 
     @staticmethod
     def client_send_message_non_message_type():
-        cli = coeus.client.Client()
+        cli = coeus_test.client.Client()
         cli.send_message([])
 
     def test_client_init_raises_exception_when_none_tcp_ip(self):

@@ -36,7 +36,7 @@ setup(
     include_package_data=True,
     keywords='coeus-test',
     name='coeus-test',
-    packages=find_packages(include=['coeus-test']),
+    packages=['coeus_test'],
     setup_requires=setup_requirements,
     tests_require=test_requirements,
     url='https://github.com/AgeOfLearning/coeus-python-framework',
