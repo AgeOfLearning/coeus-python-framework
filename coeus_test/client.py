@@ -82,7 +82,7 @@ class Client:
         if msg is None:
             raise ValueError('message cannot be None!')
 
-        if type(msg) is not message.Message:
+        if not isinstance(msg, message.Message):
             raise ValueError('message must be a type of Message')
 
         message_json = json.dumps(msg.__dict__)

@@ -17,7 +17,7 @@ class Message:
         if payload is None:
             raise ValueError('payload cannot be None!')
 
-        if type(payload) is not dict:
+        if not isinstance(payload, dict):
             raise ValueError('payload must be a type of dict')
 
         self.type = message_type
