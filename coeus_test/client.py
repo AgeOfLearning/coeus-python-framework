@@ -6,6 +6,7 @@ import socket
 import struct
 import json
 import message
+import subprocess
 
 
 class Client:
@@ -28,10 +29,14 @@ class Client:
         self.tcp_ip = tcp_ip
         self.tcp_port = tcp_port
 
-    def connect(self, num_retries=DEFAULT_NUM_CONNECTION_RETRIES, timeout=DEFAULT_CONNECTION_RETRY_TIMEOUT):
+    def connect(self, preconnect_callback=None, num_retries=DEFAULT_NUM_CONNECTION_RETRIES, timeout=DEFAULT_CONNECTION_RETRY_TIMEOUT):
         while num_retries > 0:
             try:
                 logging.info("Connecting with ip: {0} and port: {1}".format(self.tcp_ip, self.tcp_port))
+
+                if preconnect_callback is not None:
+                    preconnect_callback()
+
                 self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 self.socket.connect((self.tcp_ip, self.tcp_port))
                 break
