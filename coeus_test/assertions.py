@@ -15,6 +15,18 @@ def assert_entity_is_registered(cli, entity_id):
     return result
 
 
+def assert_entity_is_not_registered(cli, entity_id):
+    """
+    Asserts that the entity is registered.
+    :param cli:
+    :param entity_id:
+    :return:
+    """
+    result = commands.query_entity_is_registered(cli, entity_id)
+    assert result is False
+    return result
+
+
 def assert_await_entity_registered(cli, entity_id, is_registered=True, timeout_seconds=60):
     """
     Asserts that we successfully awaited for the registration state of the entity. If the timeout passes
