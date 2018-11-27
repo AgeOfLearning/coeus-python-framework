@@ -98,3 +98,4 @@ class Client:
 
         self.socket.send(message_length_binary)
         self.socket.send(message_json)
+
