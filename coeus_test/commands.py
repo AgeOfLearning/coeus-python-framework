@@ -4,16 +4,17 @@ DEFAULT_TIMEOUT_SECONDS = 60
 DEFAULT_ENTITY_REGISTERED = True
 
 
-def assert_verify_message(message):
+def verify_response(msg):
     """
     Verifies that the message is not None,
     'payload' exists and 'payload' is not None.
-    :param message:
+    :param msg:
     :return:
     """
-    assert message is not None
-    assert 'payload' in message
-    assert message['payload'] is not None
+    assert msg is not None
+    assert 'payload' in msg
+    assert msg['payload'] is not None
+    assert msg['payload']['is_error'] is False, msg['payload']['error_message']
 
 
 def query_entity_is_registered(cli, entity_id):
@@ -31,7 +32,7 @@ def query_entity_is_registered(cli, entity_id):
     cli.send_message(msg)
 
     response = cli.read_message()
-    assert_verify_message(response)
+    verify_response(response)
     return bool(response['payload']['result'])
 
 
@@ -53,7 +54,7 @@ def await_entity_registered(cli, entity_id, is_registered=DEFAULT_ENTITY_REGISTE
     cli.send_message(msg)
 
     response = cli.read_message()
-    assert_verify_message(response)
+    verify_response(response)
     return bool(response['payload']['success'])
 
 
@@ -72,7 +73,7 @@ def fetch_entity(cli, entity_id):
     cli.send_message(msg)
 
     response = cli.read_message()
-    assert_verify_message(response)
+    verify_response(response)
     return response['payload']
 
 
@@ -95,6 +96,5 @@ def invoke_entity_method(cli, entity_id, method_name, parameters):
     cli.send_message(msg)
 
     response = cli.read_message()
-    assert_verify_message(response)
-    assert response['payload']['is_error'] is False, response['payload']['error_message']
+    verify_response(response)
     return response['payload']['result']
