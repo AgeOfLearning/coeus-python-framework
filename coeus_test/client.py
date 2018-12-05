@@ -18,8 +18,14 @@ class Client:
     DEFAULT_TCP_FORWARD_PORT = 13001
     DEFAULT_NUM_CONNECTION_RETRIES = 12
     DEFAULT_CONNECTION_RETRY_TIMEOUT = 5
+    DEFAULT_MESSAGE_TIMEOUT = 180
 
-    def __init__(self, tcp_ip=DEFAULT_TCP_IP, tcp_port=DEFAULT_TCP_PORT):
+    tcp_ip = None
+    tcp_port = None
+    message_timeout = None
+    sck = None
+
+    def __init__(self, tcp_ip=DEFAULT_TCP_IP, tcp_port=DEFAULT_TCP_PORT, message_timeout=DEFAULT_MESSAGE_TIMEOUT):
         if tcp_ip is None:
             raise ValueError("tcp_ip cannot be None!")
 
@@ -28,6 +34,7 @@ class Client:
 
         self.tcp_ip = tcp_ip
         self.tcp_port = tcp_port
+        self.message_timeout = message_timeout
 
     def connect(self, preconnect_callback=None, num_retries=DEFAULT_NUM_CONNECTION_RETRIES, timeout=DEFAULT_CONNECTION_RETRY_TIMEOUT):
         while num_retries > 0:
@@ -37,8 +44,9 @@ class Client:
                 if preconnect_callback is not None:
                     preconnect_callback()
 
-                self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                self.socket.connect((self.tcp_ip, self.tcp_port))
+                self.sck = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                self.sck.connect((self.tcp_ip, self.tcp_port))
+                self.sck.settimeout(self.message_timeout)
                 break
             except Exception as e:
                 logging.error(e)
@@ -50,8 +58,8 @@ class Client:
             raise Exception("Could not connect to server at {0}:{1}".format(self.tcp_ip, self.tcp_port))
 
     def stop(self):
-        self.socket.shutdown(socket.SHUT_WR)
-        self.socket.close()
+        self.sck.shutdown(socket.SHUT_WR)
+        self.sck.close()
 
     def read_message(self):
         """
@@ -60,18 +68,18 @@ class Client:
         """
 
         # Read content length...
-        content_length_binary = self.socket.recv(self.MESSAGE_LENGTH_SIZE)
+        content_length_binary = self.sck.recv(self.MESSAGE_LENGTH_SIZE)
 
         while len(content_length_binary) < self.MESSAGE_LENGTH_SIZE:
-            content_length_binary += self.socket.recv(self.MESSAGE_LENGTH_SIZE - len(content_length_binary))
+            content_length_binary += self.sck.recv(self.MESSAGE_LENGTH_SIZE - len(content_length_binary))
 
         content_length = struct.unpack('>HH', content_length_binary)[1]
 
         # Read content in full...
-        content_binary = self.socket.recv(self.BUFFER_SIZE)
+        content_binary = self.sck.recv(self.BUFFER_SIZE)
 
         while len(content_binary) < content_length:
-            content_binary += self.socket.recv(self.BUFFER_SIZE)
+            content_binary += self.sck.recv(self.BUFFER_SIZE)
 
         msg = json.loads(content_binary)
         logging.info("Receive: {0}".format(msg))
@@ -96,6 +104,6 @@ class Client:
 
         logging.info("Send: {0}".format(message_json))
 
-        self.socket.send(message_length_binary)
-        self.socket.send(message_json)
+        self.sck.send(message_length_binary)
+        self.sck.send(message_json)
 
