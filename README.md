@@ -54,9 +54,9 @@ result = commands.query_entity_is_registered(cli, "myEntityId")
 >Response
 ```json
 {
-    'type' : 'query.entity.isRegistered',
-    'payload': {
-        'result' : true | false
+    "type" : "query.entity.isRegistered",
+    "payload": {
+        "result" : true | false
     }
 }
 ```
@@ -75,9 +75,9 @@ result = commands.await_entity_registered(cli, "myEntityId", is_registered=True,
 >Response
 ```json
 {
-    'type':'await.continue',
-    'payload': {
-        'success':true|false
+    "type":"await.continue",
+    "payload": {
+        "success":true|false
     }
 }
 ```
@@ -95,9 +95,9 @@ result = commands.fetch_entity(cli, "myEntityId")
 >Success Response
 ```json
 {
-    'type':'fetch.entity`,
-    'payload': {
-        'test_entity' : {...} | null
+    "type":"fetch.entity",
+    "payload": {
+        "test_entity" : {...} | null
     }
 }
 ```
@@ -105,12 +105,12 @@ result = commands.fetch_entity(cli, "myEntityId")
 ### Invoke Commands
 
 #### invoke_entity_method
-This command allows the python unit-test to invoke a method on the server's TestEntity and return the result.
+This command allows the python unit-test to invoke a method on the server"s TestEntity and return the result.
 
 >Usage
 ```python
 parameters = {
-    'statName':'score'
+    "statName":"score"
 }
 result = commands.invoke_entity_method(cli, "myEntityId", "GetPlayerStat", parameters)
 ```
@@ -129,11 +129,11 @@ public int GetPlayerStat(IDynamicObject parameters)
 >Response
 ```json
 {
-    'type':'invoke.entity.method',
-    'payload': {
-        'is_error' : false,
-        'error_message' : null,
-        'result' : 32
+    "type":"invoke.entity.method",
+    "payload": {
+        "is_error" : false,
+        "error_message" : null,
+        "result" : 32
     }
 }
 ```
