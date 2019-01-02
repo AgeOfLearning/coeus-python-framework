@@ -1,4 +1,4 @@
-import commands
+import coeus_test.commands
 
 default_parameters = {}
 

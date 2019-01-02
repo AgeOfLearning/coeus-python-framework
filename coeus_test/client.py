@@ -5,8 +5,9 @@ import time
 import socket
 import struct
 import json
-import message
 import subprocess
+
+import coeus_test.message
 
 
 class Client:

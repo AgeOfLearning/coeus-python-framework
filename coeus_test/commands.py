@@ -1,4 +1,4 @@
-import message
+import coeus_test.message
 
 DEFAULT_TIMEOUT_SECONDS = 60
 DEFAULT_ENTITY_REGISTERED = True
