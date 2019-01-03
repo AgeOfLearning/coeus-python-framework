@@ -1,4 +1,4 @@
-import coeus_test.message
+import coeus_test.message as message
 import unittest
 
 
@@ -6,15 +6,15 @@ class MessageTestCase(unittest.TestCase):
 
     @staticmethod
     def message_init_no_message_type():
-        coeus_test.message.Message(None, None)
+        message.Message(None, None)
 
     @staticmethod
     def message_init_no_payload():
-        coeus_test.message.Message('message_type', None)
+        message.Message('message_type', None)
 
     @staticmethod
     def message_init_non_dict_payload():
-        coeus_test.message.Message('message_type', [])
+        message.Message('message_type', [])
 
     def test_message_init_raises_exception_when_missing_message_type(self):
         self.assertRaises(ValueError, MessageTestCase.message_init_no_message_type)
