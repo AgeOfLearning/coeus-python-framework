@@ -82,7 +82,7 @@ class Client:
         while len(content_binary) < content_length:
             content_binary += self.sck.recv(self.BUFFER_SIZE)
 
-        msg = json.loads(content_binary)
+        msg = json.loads(content_binary.decode("UTF-8"))
         logging.info("Receive: {0}".format(msg))
 
         return msg
@@ -106,5 +106,5 @@ class Client:
         logging.info("Send: {0}".format(message_json))
 
         self.sck.send(message_length_binary)
-        self.sck.send(message_json)
+        self.sck.send(str.encode(message_json, encoding="UTF-8"))
 
