@@ -7,7 +7,7 @@ import struct
 import json
 import subprocess
 
-import coeus_test.message
+import coeus_test.message as message
 
 
 class Client:
