@@ -28,7 +28,7 @@ setup(
     ],
     description="Python implementation of client protocol for Coeus C# remote integration tests.",
     install_requires=requirements,
-    license="BSD 3-Clause License",
+    license="MIT",
     long_description=readme,
     long_description_content_type="text/markdown",
     include_package_data=True,
@@ -38,6 +38,6 @@ setup(
     setup_requires=setup_requirements,
     tests_require=test_requirements,
     url='https://github.com/AgeOfLearning/coeus-python-framework',
-    version='0.1.12',
+    version='0.1.13',
     zip_safe=False,
 )

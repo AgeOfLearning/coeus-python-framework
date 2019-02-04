@@ -7,7 +7,7 @@ class PortForwarding:
         while timeout > 0:
             try:
                 subprocess.call(
-                    '/opt/dev/android-sdk-linux/platform-tools/adb forward tcp:' + str(forward_port) + ' tcp:' + str(port),
+                    'adb forward tcp:' + str(forward_port) + ' tcp:' + str(port),
                     shell=True)
                 break
             except Exception as e:
